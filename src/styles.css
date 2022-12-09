@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+
+body{
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Rajdhani', sans-serif;
+}
+  
+
+::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 3px;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #CCC;
+    border-radius: 100vh;
+}
+  

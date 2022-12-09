@@ -1,0 +1,17 @@
+body{
+    margin: 0 !important;
+    display: block;
+  }
+  
+  .app-wrapper {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  
+  
+  .home-component {
+    flex-grow: 1;
+    max-height: 100vh;
+  }
+  
