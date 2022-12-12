@@ -3,19 +3,13 @@
     <div class="header">
         <div class="list-selector">
             <a routerLink="movies">
-                <div class="selector">Movies</div>
+                <div routerLinkActive="selector-bold" class="selector">Movies</div>
             </a>
             <a routerLink="shows">
-                <div class="selector">TV Shows</div>
+                <div routerLinkActive="selector-bold" class="selector">TV Shows</div>
             </a>
         </div>
         <img src="/assets/MDB-logo.png" class="logo-image">
-    </div>
-    <div class="search-container">
-        <div class="search-box">
-            <img src="/assets/search.png" [ngClass]="searchValue.length >= 3? 'search-icon-active' : 'search-icon-inactive'">
-            <input type="text" placeholder="Search movies or TV shows" ngModel [(ngModel)]="searchValue" class="search-input">
-        </div>
     </div>
     <div class="content-main">
         <router-outlet></router-outlet>

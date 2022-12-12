@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Movie } from 'src/app/models/movie.model';
+import { MoviedbApiService } from 'src/app/services/moviedb-api.service';
 
 @Component({
   selector: 'app-movies',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class MoviesComponent {
   contentType : string = "movies";
+  topTenMovies : [] = []
+  constructor(){  }
+
+  ngOnInit(){
+    
+  }
+
 }

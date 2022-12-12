@@ -17,3 +17,7 @@ body{
     border-radius: 100vh;
 }
   
+p{
+    margin: 0;
+    color: white;
+}

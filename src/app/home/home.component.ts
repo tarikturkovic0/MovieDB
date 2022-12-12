@@ -8,15 +8,7 @@ import { MoviedbApiService } from '../services/moviedb-api.service';
 })
 export class HomeComponent {
 
-  searchValue : string = "";
-
-  constructor(private apiService: MoviedbApiService){}
+  constructor(){}
   ngOnInit(){
-    this.apiService.getMovies().subscribe(data => {
-      console.log(data);
-    })
-    this.apiService.getShows().subscribe(data => {
-      console.log(data);
-    })
   }
 }

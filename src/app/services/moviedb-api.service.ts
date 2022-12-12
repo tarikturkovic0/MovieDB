@@ -12,10 +12,15 @@ export class MoviedbApiService {
   constructor(private http: HttpClient) { }
 
   getMovies(){
-    return this.http.get("https://api.themoviedb.org/3/movie/top_rated?api_key=3d07769ed638fa382f1aa2a7dc215700&language=en-US&page=1");
+    return this.http.get(this.url + "/movie/top_rated?api_key=" + this.apiKey + "&language=en-US&page=1");
   }
   getShows(){
-    return this.http.get("https://api.themoviedb.org/3/tv/top_rated?api_key=3d07769ed638fa382f1aa2a7dc215700&language=en-US&page=1");
+    return this.http.get(this.url + "/tv/top_rated?api_key=" + this.apiKey + "&language=en-US&page=1");
   }
-  
+  getSearchedMovies(query : string, page : Number){
+    return this.http.get(this.url + "/search/movie?api_key=" + this.apiKey + "&language=en-US&query=" + query + "&page=" + page);
+  }
+  getSearchedShows(query : string, page : Number){
+    return this.http.get(this.url + "/search/tv?api_key=" + this.apiKey + "&page=" + page + "&query=" + query);
+  }
 }

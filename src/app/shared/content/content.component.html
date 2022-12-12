@@ -1,2 +1,36 @@
-<h1 *ngIf="contentType == 'movies'">MOVIES</h1>
-<h1 *ngIf="contentType == 'shows'">SHOWS</h1>
+<div class="search-container">
+    <div class="search-box">
+        <img src="/assets/search.png" [ngClass]="searchValue.length >= 3? 'search-icon-active' : 'search-icon-inactive'">
+        <input *ngIf="contentType == 'movies'" (keyup)="searchMovies()" type="text" placeholder="Search movies" ngModel [(ngModel)]="searchValue" class="search-input">
+        <input *ngIf="contentType == 'shows'" (keyup)="searchShows()" type="text" placeholder="Search TV shows" ngModel [(ngModel)]="searchValue" class="search-input">
+    </div>
+</div>
+<div *ngIf="searchValue.length >= 3 && totalPages > 1" class="paginators-wrapper">
+    <div *ngIf="page > 1 && page< totalPages" class="paginators-both">
+        <img src="assets/Arrow.png" (click)="previousPage()" class="icon back">
+        <img src="assets/Arrow.png" (click)="nextPage()" class="icon next">
+    </div>
+    <div *ngIf="page == totalPages" class="paginator-left">
+        <img src="assets/Arrow.png" (click)="previousPage()" class="icon back">
+    </div>
+    <div *ngIf="page == 1 && totalPages > 1" class="paginator-right">
+        <img src="assets/Arrow.png" (click)="nextPage()" class="icon next">
+    </div>
+</div>
+<div class="gallery-wrapper">
+    <div class="gallery-content">
+        <div *ngFor="let contentElement of contentList" class="gallery-element">
+            <div class="image">
+                <img *ngIf="contentElement.poster.slice(-4) != 'null'" class="poster" src="{{contentElement.poster}}">
+                <img *ngIf="contentElement.poster.slice(-4) == 'null'" class="poster" src="assets/NoImage.jpg">
+            </div>
+            <b><p class="title">{{(contentElement.title.length>25)? (contentElement.title | slice:0:25)+'..':(contentElement.title)}}</p></b>
+            <div class="rating-row">       
+                <b><p class="rating">{{contentElement.voteAverage}}</p></b>
+                <div class="like-icon">
+                    <img src="assets/Like.png" class="like {{contentElement.rating}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
