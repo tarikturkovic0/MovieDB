@@ -24,7 +24,7 @@
                 <img *ngIf="contentElement.poster.slice(-4) != 'null'" class="poster" src="{{contentElement.poster}}">
                 <img *ngIf="contentElement.poster.slice(-4) == 'null'" class="poster" src="assets/NoImage.jpg">
             </div>
-            <b><p class="title">{{(contentElement.title.length>25)? (contentElement.title | slice:0:25)+'..':(contentElement.title)}}</p></b>
+            <b><p class="title">{{(contentElement.title.length>22)? (contentElement.title | slice:0:22)+'..':(contentElement.title)}}</p></b>
             <div class="rating-row">       
                 <b><p class="rating">{{contentElement.voteAverage}}</p></b>
                 <div class="like-icon">

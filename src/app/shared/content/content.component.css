@@ -180,3 +180,35 @@
         padding: 8px 12px;
     }
 }
+
+@media only screen and (min-width: 1486px) {
+    .image{
+        width: 100%;
+    }
+    .gallery-element{
+        width: 15%;
+        height: 73%;
+        padding: 16px 24px;
+        gap: 20px;
+    }
+    .title{
+        font-size: 20px;
+    }
+    .rating{
+        font-size: 24px;
+    }
+    .like{
+        height: 35px;
+    }
+}
+@media only screen and (min-width: 1980px) {
+    .gallery-element{
+        height: 80%;
+    }
+    .title{
+        font-size: 24px;
+    }
+    .rating{
+        font-size: 28px;
+    }
+}
