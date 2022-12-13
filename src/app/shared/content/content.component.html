@@ -17,9 +17,9 @@
         <img src="assets/Arrow.png" (click)="nextPage()" class="icon next">
     </div>
 </div>
-<div class="gallery-wrapper">
+<div class="gallery-wrapper" *ngIf="!loading">
     <div class="gallery-content">
-        <div *ngFor="let contentElement of contentList" class="gallery-element">
+        <div *ngFor="let contentElement of contentList" (click)="showWindow(contentElement.id)" class="gallery-element">
             <div class="image">
                 <img *ngIf="contentElement.poster.slice(-4) != 'null'" class="poster" src="{{contentElement.poster}}">
                 <img *ngIf="contentElement.poster.slice(-4) == 'null'" class="poster" src="assets/NoImage.jpg">
@@ -33,4 +33,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="content-window" *ngIf="windowOnScreen">
+    <app-content-window [contentType]=contentType [id] = shownContentId (close)="showWindow(shownContentId)"></app-content-window>
 </div>

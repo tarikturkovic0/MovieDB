@@ -23,4 +23,16 @@ export class MoviedbApiService {
   getSearchedShows(query : string, page : Number){
     return this.http.get(this.url + "/search/tv?api_key=" + this.apiKey + "&page=" + page + "&query=" + query);
   }
+  getMovieDetails(id : number){
+    return this.http.get(this.url + "/movie/" + id + "?api_key=" + this.apiKey);
+  }
+  getShowDetails(id : number){
+    return this.http.get(this.url + "/tv/" + id + "?api_key=" + this.apiKey);
+  }
+  getMovieTrailer(id : number){
+    return this.http.get(this.url + "/movie/" +  id + "/videos?api_key=" + this.apiKey);
+  }
+  getShowTrailer(id : number){
+    return this.http.get(this.url + "/tv/" +  id + "/videos?api_key=" + this.apiKey);
+  }
 }

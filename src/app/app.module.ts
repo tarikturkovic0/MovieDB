@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { ContentComponent } from './shared/content/content.component';
 import { MoviesComponent } from './home/movies/movies.component';
 import { ShowsComponent } from './home/shows/shows.component';
+import { ContentWindowComponent } from './shared/content/content/content-window.component';
+import { SafeUrlPipe } from './home/pipes/safe-url.pipe';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +18,9 @@ import { ShowsComponent } from './home/shows/shows.component';
     HomeComponent,
     ContentComponent,
     MoviesComponent,
-    ShowsComponent
+    ShowsComponent,
+    ContentWindowComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,

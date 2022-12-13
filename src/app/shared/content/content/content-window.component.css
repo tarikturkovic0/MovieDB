@@ -1,0 +1,162 @@
+.wrapper{
+    animation: 0.5s ease-out 0s 1 fadeIn;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-window{
+    background-color: rgb(170, 170, 170);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 855px;
+    border-radius: 16px;
+}
+
+.top-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.poster-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 12px;
+    background-color: rgb(24, 24, 24);
+    padding: 0 9%;
+}
+
+.poster{
+    position: relative;
+    top: 30%;
+    border: solid;
+    border-color: rgb(170, 170, 170);
+    border-width: 8px;
+}
+
+.backdrop-box{
+    display: flex;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.backdrop-box img{
+    width: 100%;
+}
+
+h1{
+    margin: 0;
+}
+
+h3{
+    margin: 0 20px 0 0;
+}
+
+.title{
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+p{
+    margin: 0 20px 0 0 !important;
+}
+
+.genres{
+    display: flex;
+    color: black;
+    font-size: 20px;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.content-title{
+    margin: 0 20px 0 0;
+}
+
+.close{
+    position: absolute;
+    top: 84px;
+    left: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close:hover{
+    opacity: 70%;
+}
+
+.main-info{
+    width: 100%;
+}
+
+.overview{
+    padding: 0 12px;
+    font-size: 16px;
+    margin: 0 !important;
+    color: black;
+}
+
+.bottom-row{
+    display: flex;
+    justify-content: right;
+}
+
+.imdb-icon{
+    padding: 0 12px 12px 0;
+    transition: 0.3s;
+}
+
+.imdb-icon:hover{
+    opacity: 70%;
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .wrapper{
+        height: auto;
+    }
+    .close{
+        top: 30px;
+        left: 10px;
+    }
+    .top-row{
+        flex-direction: column;
+        height: 50%;
+        width: 100%;
+    }
+    .main-window{
+        border-radius: 0;
+        height: 100vh;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .poster-box{
+        border-top-left-radius: 0;
+        height: 50%;
+    }
+    .backdrop{
+        width: 80%;
+    }
+    .poster{
+        top: 0;
+        height: 90%;
+    }
+}

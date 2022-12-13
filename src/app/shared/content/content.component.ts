@@ -14,6 +14,9 @@ export class ContentComponent {
   searchValue : string = "";
   page : number = 1;
   totalPages : number = 1;
+  shownContentId : number = -1;
+  windowOnScreen : boolean = false;
+  loading = true;
 
   constructor(private apiService : MoviedbApiService){}
 
@@ -25,32 +28,36 @@ export class ContentComponent {
       this.contentList = [];
       this.apiService.getMovies().subscribe((data : any) =>{
         data.results.slice(0, 10).forEach((movie : any) =>{
-          let newMovie = new Movie(movie.backdrop_path, movie.genre_ids, movie.id, movie.overview, movie.poster_path, movie.title, movie.vote_average)
+          let newMovie = new Movie(movie.backdrop_path, movie.id, movie.release_date, movie.overview, movie.poster_path, movie.title, movie.vote_average, movie.imdb_id)
           this.contentList.push(newMovie);
-        })
-      })
+        });
+        this.loading = false;
+      });
     }
     else{
       this.contentList = [];
       this.apiService.getShows().subscribe((data : any) =>{
         data.results.slice(0, 10).forEach((show : any) =>{
-          let newShow = new Show(show.backdrop_path, show.genre_ids, show.id, show.overview, show.poster_path, show.name, show.vote_average)
+          let newShow = new Show(show.backdrop_path, show.id, show.release_date, show.overview, show.poster_path, show.name, show.vote_average, show.imdb_id)
           this.contentList.push(newShow);
-        })
-      })
+        });
+        this.loading = false;
+      });
     }
   }
 
   searchMovies(){
     if(this.searchValue.length >= 3){
+      this.loading = true;
       this.contentList = [];
       this.apiService.getSearchedMovies(this.searchValue, 1).subscribe((data : any) => {
         this.page = 1;
         this.totalPages = data.total_pages;
         data.results.forEach((movie : any) =>{
-          let newMovie = new Movie(movie.backdrop_path, movie.genre_ids, movie.id, movie.overview, movie.poster_path, movie.title, movie.vote_average)
+          let newMovie = new Movie(movie.backdrop_path, movie.id, movie.release_date, movie.overview, movie.poster_path, movie.title, movie.vote_average, movie.imdb_id)
           this.contentList.push(newMovie);
-        });        
+        });     
+        this.loading = false;   
       });
     }
     else if(this.searchValue.length == 0) this.initializePage();
@@ -58,14 +65,16 @@ export class ContentComponent {
 
   searchShows(){
     if(this.searchValue.length >= 3){
+      this.loading = true;
       this.contentList = [];
       this.apiService.getSearchedShows(this.searchValue, 1).subscribe((data : any) => {
         this.page = 1;
         this.totalPages = data.total_pages;
         data.results.forEach((show : any) =>{
-          let newShow = new Movie(show.backdrop_path, show.genre_ids, show.id, show.overview, show.poster_path, show.name, show.vote_average)
+          let newShow = new Movie(show.backdrop_path, show.id, show.release_date, show.overview, show.poster_path, show.name, show.vote_average, show.imdb_id)
           this.contentList.push(newShow);
-        });        
+        });      
+        this.loading = false;  
       });
     }
     else if(this.searchValue.length == 0) this.initializePage();
@@ -79,6 +88,7 @@ export class ContentComponent {
       else this.searchShowsByPage();
     }
   }
+
   previousPage(){
     if(this.page > 1){
       this.page -=  1;
@@ -87,22 +97,35 @@ export class ContentComponent {
       else this.searchShowsByPage();
     }
   }
+
   searchMoviesByPage(){
     this.apiService.getSearchedMovies(this.searchValue, this.page).subscribe((data : any) => {
+      this.loading = true;
       this.totalPages = data.total_pages;
       data.results.forEach((movie : any) =>{
-        let newMovie = new Movie(movie.backdrop_path, movie.genre_ids, movie.id, movie.overview, movie.poster_path, movie.title, movie.vote_average)
+        let newMovie = new Movie(movie.backdrop_path, movie.id, movie.release_date, movie.overview, movie.poster_path, movie.title, movie.vote_average, movie.imdb_id)
         this.contentList.push(newMovie);
       });
+      this.loading = false;
     });
   }
+
   searchShowsByPage(){
     this.apiService.getSearchedShows(this.searchValue, this.page).subscribe((data : any) => {
+      this.loading = true;
       this.totalPages = data.total_pages;
       data.results.forEach((show : any) =>{
-        let newShow = new Show(show.backdrop_path, show.genre_ids, show.id, show.overview, show.poster_path, show.name, show.vote_average)
+        let newShow = new Show(show.backdrop_path, show.id, show.release_date, show.overview, show.poster_path, show.name, show.vote_average, show.imdb_id)
         this.contentList.push(newShow);
       });
+      this.loading = false;
     });
   }
+
+  showWindow(id : number){
+    if(this.shownContentId != -1) this.shownContentId = -1;
+    else this.shownContentId = id;
+    this.windowOnScreen = !this.windowOnScreen;
+  }
+
 }
