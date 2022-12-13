@@ -23,6 +23,11 @@ export class ContentComponent {
   ngOnInit(){
     this.initializePage();
   }
+
+  //the initializePage function loads all the necessary data for the tab that is opened
+  //the getMovies/getShows method makes an API call to the TMDB API and gets the first 20 results
+  //of movies/shows sorted by their ratings, and then I get the first 10 elements, turn them into
+  //Movie/Show instances and put them in an array of content that shows up on the page
   initializePage(){
     if(this.contentType == "movies"){
       this.contentList = [];
@@ -46,6 +51,9 @@ export class ContentComponent {
     }
   }
 
+  //the searchMovies/searchShows methods check if the search input has 3 or more characters,
+  //if so, it empties the current array of Shows/Movies and resets the page number to 1,
+  //grabs the total number of pages from the data object and fills up the main content array with new results
   searchMovies(){
     if(this.searchValue.length >= 3){
       this.loading = true;
@@ -80,6 +88,8 @@ export class ContentComponent {
     else if(this.searchValue.length == 0) this.initializePage();
   }
 
+  //the nextPage and previousPage functions change the page number, empty the main content array, initialize the
+  //search function for the new page and fill up the array with new content
   nextPage(){
     if(this.page < this.totalPages){
       this.page +=  1;
@@ -122,6 +132,7 @@ export class ContentComponent {
     });
   }
 
+  //this function checks if the content preview page is opened and changes it's state
   showWindow(id : number){
     if(this.shownContentId != -1) this.shownContentId = -1;
     else this.shownContentId = id;

@@ -19,6 +19,7 @@ export class ContentWindowComponent {
 
   constructor(private apiService : MoviedbApiService){}
 
+  //in the ngOnInit function I get the data of the movie or show and put that data inside a Movie/Show object
   ngOnInit(){
     if(this.contentType == "movies"){
       this.apiService.getMovieDetails(this.id).subscribe((movie : any) => {
